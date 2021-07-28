@@ -7,15 +7,21 @@ Built using the sample from Apace Flink Docs. See [link](https://ci.apache.org/p
 
 # Install Instructions
 ```sh
+# Setup Kafka
 sh ~/kafka/bin/zookeeper-server-start.sh ~/kafka/config/zookeeper.properties
-
 sh ~/kafka/bin/kafka-server-start.sh ~/kafka/config/server.properties
 
-cd ~/flink/bin/ && ./start-cluster.sh
+# Create source and sink topics
+sh ~/kafka/bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic fd-cep 
+sh ~/kafka/bin/kafka-topics.sh --create --bootstrap-server localhost:9092 --replication-factor 1 --partitions 1 --topic notifications
 
+# Setup Flink
+cd ~/flink/bin/ && ./start-cluster.sh
 cd ~/flink/bin/ && ./flink run ~/fraud-detection-clone/target/fd-cep-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 
+# Observe sink
 sh ~/kafka/bin/kafka-console-consumer.sh --bootstrap-server localhost:9092 --topic notifications
 
+# Send in mock transaction data
 python ~/fraud-detection-clone/producer/mock_stream.py
 ```
