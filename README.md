@@ -1,7 +1,7 @@
 # Transaction Fraud Detection CEP application 
 Built using the sample from Apace Flink Docs. See [link](https://ci.apache.org/projects/flink/flink-docs-release-1.13/docs/try-flink/datastream/) for more details.
 
-# Prerequsites
+# Prerequisites
 - Download [Apace Flink](https://www.apache.org/dyn/closer.lua/flink/flink-1.13.1/flink-1.13.1-bin-scala_2.11.tgz)
 - Download [Apace Kafka](https://www.apache.org/dyn/closer.cgi?path=/kafka/2.8.0/kafka-2.8.0-src.tgz)
 
